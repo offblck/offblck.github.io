@@ -14,6 +14,9 @@ const config = {
 		adapter: adapter({
 			fallback: '404.html',
 		}),
+        files: {
+            assets: "static",
+        },
 	}
 };
 
