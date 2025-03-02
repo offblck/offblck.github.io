@@ -1,1 +1,37 @@
-@import 'tailwindcss'
+@import 'tailwindcss';
+
+@theme {
+	--color-dark-0: #262626;
+    --color-dark-green: #00B828;
+    --color-light-blue: #00EEFF;
+    --color-light-green: #00FF4C;
+    --color-light-gray: #666666;
+    --color-dark-gray: #3E3E3E;
+    --color-dark-brown: #3E3E3E;
+
+	--font-jetbrains: "JetBrains Mono";
+
+    --animate-blink: blink 1.5s ease-in-out infinite;
+    --animate-fade-in: fade-in 0.5s ease-in;
+    --animate-shake: shake 0.25s ease-out;
+
+    @keyframes blink {
+        0%, 100% {
+            opacity: 100%;
+        }
+        30%, 70% {
+            opacity: 0%;
+        }
+    }
+
+    @keyframes fade-in {
+        0% { opacity: 0% }
+        100% {opacity: 100% }
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
+}
