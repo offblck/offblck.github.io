@@ -1,10 +1,12 @@
 <script lang="ts">
+    import { tick } from "svelte";
+
     const categories = [
         "projects",
         "blog",
         "oomfs",
         "twitter",
-        "favorite",
+        "favorites",
         //"effects",
         //"themes",
     ];
@@ -14,16 +16,71 @@
     let fzfInput = $state("");
     let promptValue = $state("");
     let paused = $state(false);
+    let completion: string | undefined = $derived.by(() => {
+        if (promptValue) {
+            return categories.find((category) =>
+                category.startsWith(promptValue),
+            );
+        } else {
+            return undefined;
+        }
+    });
     let promptLines: string[] = $state([]);
+
+    let text_div: HTMLDivElement | undefined = $state();
+
     function lockFocus(e: any) {
         e.target.focus();
     }
+
+    function clearPrompts() {
+        promptLines = [];
+        promptValue = "";
+    }
+
+    function setCursorToEnd() {
+        let selectedText = window.getSelection();
+        if (selectedText) {
+            let selectedRange = document.createRange();
+            if (text_div) {
+                if (text_div.firstChild) {
+                    selectedRange.setStart(
+                        text_div.firstChild,
+                        promptValue.length,
+                    );
+                }
+                selectedRange.collapse(true);
+                selectedText.removeAllRanges();
+                selectedText.addRange(selectedRange);
+                text_div.focus();
+            }
+        }
+    }
+
+    function hasModifier(e: KeyboardEvent) {
+        return e.altKey || e.ctrlKey || e.shiftKey || e.metaKey;
+    }
+
     function handlePromptKeydown(e: any) {
         if (e.code === "Enter") {
             e.preventDefault();
             if (categories.includes(e.target.textContent)) {
                 promptLines.push(e.target.textContent);
                 promptValue = "";
+            } else if (promptValue.includes("clear")) {
+                clearPrompts();
+            } else {
+                promptLines.push;
+            }
+        } else if (e.key === "l" && e.ctrlKey) {
+            clearPrompts();
+        } else if (e.key === "u" && e.ctrlKey) {
+            promptValue = "";
+        } else if (e.key === "Tab") {
+            e.preventDefault();
+            if (completion) {
+                promptValue = completion;
+                tick().then(setCursorToEnd);
             }
         }
     }
@@ -58,6 +115,7 @@
                 break;
         }
     }
+
     function handleEntry(text: string) {
         if (isFzf) {
             isFzf = false;
@@ -65,10 +123,12 @@
         promptLines.push(text);
         filteredCategories = categories;
     }
-    function handleInput() {
+
+    function handleInput(input: any) {
         handlePause();
-        fuzzySearch(fzfInput);
+        fuzzySearch(input);
     }
+
     function fuzzySearch(input: string) {
         if (!input || input.trim() === "") {
             filteredCategories = [...categories];
@@ -162,9 +222,9 @@
         <pre class="text-sm leading-tight select-none text-light-green">
    ____  ________________  __    ___   ________ __
   / __ \/ ____/ ____/ __ )/ /   /   | / ____/ //_/
- / / / / /_  / /_  / __  / /   / /| |/ /   / , &lt;  
-/ /_/ / __/ / __/ / /_/ / /___/ ___ / /___/ /| |  
-\____/_/   /_/   /_____/_____/_/  |_\____/_/ |_|  
+ / / / / /_  / /_  / __  / /   / /| |/ /   / , &lt;
+/ /_/ / __/ / __/ / /_/ / /___/ ___ / /___/ /| |
+\____/_/   /_/   /_____/_____/_/  |_\____/_/ |_|
 </pre>
         <span class="text-sm">4F 46 46 42 4C 41 43 4B</span>
     </div>
@@ -189,7 +249,7 @@
                 ></div>
                 {#if filteredCategories.length}
                     <div
-                        class="absolute left-0 w-[112px] bg-light-gray h-6"
+                        class="absolute left-0 w-[124px] bg-light-gray h-6"
                         style:top={(categories.length - 1 - selected) * 41 +
                             "px"}
                     >
@@ -200,14 +260,7 @@
             <ul class="flex flex-col gap-4 relative justify-end">
                 {#each filteredCategories as category}
                     <li class="flex gap-2">
-                        {#if category === "favorite"}
-                            {category}
-                            <span class="text-gray-400"
-                                >[tech | music | languages | books]</span
-                            >
-                        {:else}
-                            {category}
-                        {/if}
+                        {category}
                     </li>
                 {/each}
             </ul>
@@ -229,7 +282,7 @@
                     contenteditable="true"
                     role="form"
                     onkeydown={handleKeydown}
-                    oninput={handleInput}
+                    oninput={() => handleInput(fzfInput)}
                     onblur={lockFocus}
                 ></div>
                 <span
@@ -243,45 +296,67 @@
         {/if}
     </div>
     <div class="flex flex-col gap-2">
-        {#if promptLines.length}
+        {#if !isFzf}
             {#each promptLines as promptLine}
                 <div class="flex gap-2">
                     {@render prompt()}
                     <span>{promptLine}</span>
                 </div>
                 {#if promptLine === "projects"}
-                    shit, you supposed to ship?
+                    shiit, you supposed to ship?
                 {:else if promptLine === "blog"}
                     you think I have opinions?
                 {:else if promptLine === "oomfs"}
-                    <a href="https://x.com/pokeghosst" target="_blank"
-                        >pokeghost</a
-                    >
+                    could be you but you playing...
                 {:else if promptLine === "twitter"}
-                    <a href="https://x.com/OFFBLACKdev" target="_blank"
-                        >https://x.com/OFFBLACKdev</a
+                    <a
+                        class="w-max"
+                        href="https://x.com/OFFBLACKdev"
+                        target="_blank">https://x.com/OFFBLACKdev</a
                     >
-                {:else if promptLine === "favorite"}
-                    Soon TM
+                {:else if promptLine === "favorites"}
+                    kitty, nvim, c, rust
                 {/if}
             {/each}
-            <div class="flex gap-[6px]">
-                {@render prompt()}
+            <div class="flex">
+                <div class="pr-2">
+                    {@render prompt()}
+                </div>
                 <div
                     class="focus:outline-none active:border-none inline caret-transparent
-                    w-fit tracking-wide"
+                    w-fit tracking-wide {completion
+                        ? 'text-white'
+                        : 'text-red-500'}"
                     bind:textContent={promptValue}
                     autofocus
                     contenteditable="true"
                     role="form"
                     onkeydown={handlePromptKeydown}
                     onblur={lockFocus}
+                    bind:this={text_div}
                 ></div>
-                <span
-                    class="bg-white w-[1ch] {paused
-                        ? 'animate-none'
-                        : 'animate-blink'}"
-                ></span>
+                <div>
+                    <span
+                        class="bg-white absolute w-[1ch] {paused
+                            ? 'animate-none'
+                            : 'animate-blink'}"
+                        >L
+                    </span>
+                    {#if completion}
+                        <span class="text-gray-500">
+                            {completion.slice(
+                                promptValue.length,
+                                promptValue.length + 1,
+                            )}
+                        </span>
+                    {/if}
+                </div>
+
+                {#if promptValue !== "" && completion}
+                    <div class="text-gray-500">
+                        {completion.slice(promptValue.length + 1)}
+                    </div>
+                {/if}
             </div>
         {/if}
     </div>
