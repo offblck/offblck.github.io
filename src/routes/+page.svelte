@@ -51,43 +51,44 @@
 </script>
 
 <main class="w-full h-[100vh] flex flex-col gap-12 justify-center items-center">
-    <pre class="text-white font-jetbrains text-sm select-none leading-tight">
-                                        ..                                     
-                                     ,o""""o                                   
-                                  ,o$"     o                                   
-                               ,o$$$                                           
-                             ,o$$$'                                            
-                           ,o$"o$'                                             
-                         ,o$$"$"'                                              
-                      ,o$"$o"$"'                                               
-                   ,oo$"$"$"$"$$`                      ,oooo$$$$$$$$oooooo.    
-                ,o$$$"$"$"$"$"$"o$`..             ,$o$"$$"$"'            `oo.o 
-             ,oo$$$o"$"$"$"$  $"$$$"$`o        ,o$$"o$$$o$'                 `o 
-          ,o$"$"$o$"$"$"$  $"$$o$$o $$o`o   ,$$$$$o$"$$o'                    $ 
-        ,o"$$"'  `$"$o$" o$o$o"  $$$o$o$oo"$$$o$"$$"$o"'                     $ 
-     ,o$"'        `"$ "$$o$$" $"$o$o$$"$o$$o$o$o"$"$"`""o                   '  
-   ,o$'          o$ `"$"$o "flag{oomf}$$$o"$o$$o"$$$    `$$                     
-  ,o'           (     `" o$"$o"$o$$$"$o$"$"$o$"$$"$ooo|  ``                    
- $"$             `    (   `"o$$"$o$o$$ "o$o"   $o$o"$"$    )                   
-(  `                   `    `o$"$$o$" "o$$     "o /|"$o"                       
- `                           `$o$$$$"" o$      "o$\|"$o'                       
-                              `$o"$"$ $ "       `"$"$o$                        
-       				       "$$"$$ "oo         ,$""$                        
-                               $"$o$$""o"          ,o$"$                       
-                               $$"$$"$ "o           `,",                       
-                     ,oo$oo$$$$$$"$o$$$ ""o                                    
-                  ,o$$"o"o$o$$o$$$"$o$$oo"oo                                   
-                ,$"oo"$$$$o$$$$"$$$o"o$o"o"$o o                                
-               ,$$$""$$o$,      `$$$$"$$$o""$o $o                              
-               $o$o$"$,          `$o$"$o$o"$$o$ $$o                            
-              $$$o"o$$           ,$$$$o$$o"$"$$ $o$$oo      ,                  
-              "$o$$$ $`.        ,"$$o$"o$""$$$$ `"$o$$oo    `o                 
-              `$o$o$"$o$o`.  ,.$$"$o$$"$$"o$$$$   `$o$$ooo    $$ooooooo        
-                `$o$"$o"$"$$"$$"$"$$o$$o"$$o"        `"$o$o            `"o     
-                   `$$"$"$o$$o$"$$"$ $$$  $ "           `$"$o            `o    
-                      `$$"o$o"$o"$o$ "  o $$$o            `$$"o          ,$    
-                         (" ""$"""     o"" "o$o             `$$ooo     ,o$$    
-                              $$"""o   (   "$o$$$"o            `$o$$$o$"$'     
+    <pre
+        class="text-white font-jetbrains scale-50 xxs:scale-75 xs:scale-100 text-2xs sm:text-xs md:text-sm select-none leading-tight">
+                                        ..
+                                     ,o""""o
+                                  ,o$"     o
+                               ,o$$$
+                             ,o$$$'
+                           ,o$"o$'
+                         ,o$$"$"'
+                      ,o$"$o"$"'
+                   ,oo$"$"$"$"$$`                      ,oooo$$$$$$$$oooooo.
+                ,o$$$"$"$"$"$"$"o$`..             ,$o$"$$"$"'            `oo.o
+             ,oo$$$o"$"$"$"$  $"$$$"$`o        ,o$$"o$$$o$'                 `o
+          ,o$"$"$o$"$"$"$  $"$$o$$o $$o`o   ,$$$$$o$"$$o'                    $
+        ,o"$$"'  `$"$o$" o$o$o"  $$$o$o$oo"$$$o$"$$"$o"'                     $
+     ,o$"'        `"$ "$$o$$" $"$o$o$$"$o$$o$o$o"$"$"`""o                   '
+   ,o$'          o$ `"$"$o "flag{oomf}$$$o"$o$$o"$$$    `$$
+  ,o'           (     `" o$"$o"$o$$$"$o$"$"$o$"$$"$ooo|  ``
+ $"$             `    (   `"o$$"$o$o$$ "o$o"   $o$o"$"$    )
+(  `                   `    `o$"$$o$" "o$$     "o /|"$o"
+ `                           `$o$$$$"" o$      "o$\|"$o'
+                              `$o"$"$ $ "       `"$"$o$
+       				       "$$"$$ "oo         ,$""$
+                               $"$o$$""o"          ,o$"$
+                               $$"$$"$ "o           `,",
+                     ,oo$oo$$$$$$"$o$$$ ""o
+                  ,o$$"o"o$o$$o$$$"$o$$oo"oo
+                ,$"oo"$$$$o$$$$"$$$o"o$o"o"$o o
+               ,$$$""$$o$,      `$$$$"$$$o""$o $o
+               $o$o$"$,          `$o$"$o$o"$$o$ $$o
+              $$$o"o$$           ,$$$$o$$o"$"$$ $o$$oo      ,
+              "$o$$$ $`.        ,"$$o$"o$""$$$$ `"$o$$oo    `o
+              `$o$o$"$o$o`.  ,.$$"$o$$"$$"o$$$$   `$o$$ooo    $$ooooooo
+                `$o$"$o"$"$$"$$"$"$$o$$o"$$o"        `"$o$o            `"o
+                   `$$"$"$o$$o$"$$"$ $$$  $ "           `$"$o            `o
+                      `$$"o$o"$o"$o$ "  o $$$o            `$$"o          ,$
+                         (" ""$"""     o"" "o$o             `$$ooo     ,o$$
+                              $$"""o   (   "$o$$$"o            `$o$$$o$"$'
                                 ) ) )           )  ) )            ` "'
 </pre>
     <div class="font-jetbrains flex">

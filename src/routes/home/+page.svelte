@@ -218,8 +218,9 @@
 
 <main class="font-jetbrains text-white p-4 pb-16">
     {@render prompt()}
-    <div class="flex gap-1 items-end">
-        <pre class="text-sm leading-tight select-none text-light-green">
+    <div class="flex flex-col md:flex-row gap-1 items-start md:items-end">
+        <pre
+            class="text-2xs xxs:text-xs xs:text-sm leading-tight select-none text-light-green">
    ____  ________________  __    ___   ________ __
   / __ \/ ____/ ____/ __ )/ /   /   | / ____/ //_/
  / / / / /_  / /_  / __  / /   / /| |/ /   / , &lt;
@@ -232,7 +233,7 @@
         {@render prompt()}
         about
     </div>
-    <div class="my-6 flex gap-6 items-center ml-8">
+    <div class="my-6 flex gap-6 items-center ml-2 xxs:ml-8">
         <img
             class="rounded-full w-16 h-16 border-2 border-red-600"
             src="/feitan.jpeg"
@@ -240,7 +241,7 @@
         />
         Hello I'm OFFBLACK an absolute random with internet access
     </div>
-    <div class="ml-[60px] flex flex-col gap-4">
+    <div class="ml-[36px] xxs:ml-[60px] flex flex-col gap-4">
         <div class="flex gap-6">
             <div class="relative">
                 <div
